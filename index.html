@@ -71,22 +71,7 @@
     </section>
 
     <script>
-
-        // document.querySelector('body').addEventListener('mousemove',eyeball);
-
-        // function eyeball(){
-        //     const eye = document.querySelectorAll('.eye');
-        //     eye.forEach(function(eye){
-        //         let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
-        //         let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
-
-        //         let radian = Math.atan2(event.pageX - x, event.pageY - y);
-        //         let rotation = (radian * (180 / Math.PI) * -1) + 270;
-        //         eye.style.transform = "rotate("+rotation+"deg)"
-        //     })
-        // }
         window.addEventListener('deviceorientation', function(e){
-            console.log("Done");
             const x = Math.round(e.beta);
             const y = Math.round(e.gamma);
             const z = Math.round(e.alpha);
@@ -99,7 +84,6 @@
                 }
                 return false
             }
-            // console.log(x,y,z);
             const eye = document.querySelectorAll('.balls');
             eye.forEach(function(eye){
                 if (check_a_point(x,y)){
@@ -111,7 +95,6 @@
         function changeChar(getChar){
             let bg = document.querySelector('.bg');
             var selectChar = getChar.value;
-            console.log(selectChar);
             let text = getChar.options[getChar.selectedIndex].text;
             let needed = document.querySelector(selectChar);
             const lines = Array.from(document.getElementsByClassName('face'));
@@ -119,42 +102,6 @@
                 line.classList.remove("active");
             });
             needed.classList.add("active");
-            // needed.classList.toggle(selectChar);
-            // var options = document.querySelector('.selectColor').options;
-            // for (let i =0; i < options.length; i++){
-            //     if (options[i].value==selectChar){
-            //         console.log(options[i].value);
-            //         let main_ = document.querySelector(selectChar);
-            //         if (main_.classList.contains("active")===false)
-            //         {
-            //             main_.classList.add("active");
-            //         }
-            //         else{
-            //             main_.classList.remove("active");
-            //         }
-            //         // document.querySelector(selectChar).classList.remove("active");
-            //     }
-                // if (options[i].value!=selectChar && document.querySelector(selectChar).classList.add("active")==true)
-                // {
-                //     document.querySelector(selectChar).classList.remove("active");
-                // }
-                // console.log(options[i].value);
-            // }
-            // console.log(options.length);
-
-            // bg.style.background = selectColor;
-            // let main_ = document.querySelector(selectChar);
-            // main_.classList.add('active');
-            // var sections = document.getElementById("#face");
-            // for (i = 0; i < sections.length; i++){
-            //     console.log(sections[i]);
-            //     if (sections[i]!=selectChar)
-            //     {
-            //         document.querySelector().classList.remove('active');
-            //     }
-            // }
-            // all_.classList.remove('active');
-            // bg.innerHTML = text;
         }
 
     </script>
@@ -172,9 +119,6 @@
             align-items: center;
             min-height: 100vh;
             background: radial-gradient(#6f1ef2,#ef4921);
-            /* background: radial-gradient(#fafd48,#40d405); */
-            /* background: radial-gradient(#03001f,#09026e); */
-            /* background: radial-gradient(#00c3ff,#4ee9a0); */
             overflow: hidden;
         }
         .box
@@ -214,7 +158,6 @@
             align-items: center;
             width: 130px;
             height: 130px;
-            /* display: block; */
             background: #fff;
             margin: 0 20px;
             z-index: 10;
@@ -227,9 +170,6 @@
         .face1 .eye .balls
         {
             position: absolute;
-            /* top: 50%; */
-            /* left: 35px; */
-            /* transform: translate(-50%,-50%); */
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -284,13 +224,11 @@
             box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
                         inset 0 0 15px #2318c0,
                         inset 0 0 35px #101286;
+            overflow: hidden;
         }
-        .face2 .eye::before
+        .face2 .eye .balls
         {
-            content: '';
             position: absolute;
-            top: 50%;
-            left: 35px;
             transform: translate(-50%,-50%);
             width: 45px;
             height: 45px;
@@ -347,6 +285,7 @@
             box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
                         inset 0 0 15px #fffeff,
                         inset 0 0 35px #a0a0a0;
+            overflow: hidden;
         }
         .face3 img
         {
@@ -362,12 +301,9 @@
             z-index: 20;
             margin-top: 140px;
         }
-        .face3 .eye::before
+        .face3 .eye .balls
         {
-            content: '';
             position: absolute;
-            top: 50%;
-            left: 35px;
             transform: translate(-50%,-50%);
             width: 50px;
             height: 50px;
@@ -390,13 +326,11 @@
             box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
                         inset 0 0 15px #1a1a1a,
                         inset 0 0 35px #131313;
+            overflow: hidden;
         }
-        .face4 .eye::before
+        .face4 .eye .balls
         {
-            content: '';
             position: absolute;
-            top: 50%;
-            left: 35px;
             transform: translate(-70%,-50%);
             width: 30px;
             height: 30px;
@@ -487,16 +421,11 @@
             left: 90px;
             z-index: 30;
             border-radius: 50%;
-            /* box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
-                        inset 0 0 15px #1a1a1a,
-                        inset 0 0 35px #131313; */
+            overflow: hidden;
         }
-        .face5 .eye::before
+        .face5 .eye .balls
         {
-            content: '';
             position: absolute;
-            top: 50%;
-            left: 35px;
             transform: translate(-70%,-50%);
             width: 30px;
             height: 30px;
