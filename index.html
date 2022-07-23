@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Eye Ball Move on Mousemove 02</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+    <div class="box">
+        <div class="title">Let's play Tilt Guy.</div>
+        <div class="face face1 active">
+            <div class="eye"></div>
+            <div class="eye"></div>
+            <div class="head">
+                <div class="mouth"></div>
+            </div>
+        </div>
+        <div class="face face2">
+            <div class="eye"></div>
+            <div class="eye"></div>
+            <img src="https://img.icons8.com/plasticine/800/000000/cute-monster.png"/>
+        </div>
+        <div class="face face3">
+                <div class="eye"></div>
+                <div class="patch"></div>
+                <img src="https://img.icons8.com/ios-filled/1000/380093/third-eye-symbol.png"/>
+        </div>
+        <div class="face face4">
+            <div class="eye"></div>
+            <div class="eye"></div>
+            <div class="glasses"></div>
+            <div class="glasses"></div>
+            <img class="img1" src="https://img.icons8.com/dusk/900/000000/detective.png"/>
+            <img class="img2" src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/200/1A1A1A/external-cigar-colombia-icongeek26-linear-colour-icongeek26.png"/>
+        </div>
+        <div class="face face5">
+            <div class="eye"></div>
+            <div class="eye"></div>
+            <div class="hpatch"></div>
+            <div class="hpatch"></div>
+            <img src="https://img.icons8.com/fluency/700/FA5252/reading-unicorn.png"/>
+        </div>
+    </div>
+    <section>
+        <div class="bg">Choose Character</div>
+        <select class="selectColor" onchange="changeChar(this)">
+            <option value=".face1">Goolops</option>
+            <option value=".face2">Charlie</option>
+            <option value=".face3">Hank</option>
+            <option value=".face4">supreme</option>
+            <option value=".face5">Pinkpony</option>
+        </select> 
+    </section>
+
+    <script>
+
+        // document.querySelector('body').addEventListener('mousemove',eyeball);
+
+        // function eyeball(){
+        //     const eye = document.querySelectorAll('.eye');
+        //     eye.forEach(function(eye){
+        //         let x = (eye.getBoundingClientRect().left) + (eye.clientWidth / 2);
+        //         let y = (eye.getBoundingClientRect().top) + (eye.clientHeight / 2);
+
+        //         let radian = Math.atan2(event.pageX - x, event.pageY - y);
+        //         let rotation = (radian * (180 / Math.PI) * -1) + 270;
+        //         eye.style.transform = "rotate("+rotation+"deg)"
+        //     })
+        // }
+        window.addEventListener('deviceorientation', function(e){
+            console.log("Done");
+            const x = Math.round(e.beta);
+            const y = Math.round(e.gamma);
+            const z = Math.round(e.alpha);
+            console.log(x,y,z);
+            const eye = document.querySelectorAll('.eye');
+            eye.forEach(function(eye){
+                eye.style.transform = `translateY(${x}px) translateX(${y}px)`;
+            });
+
+        })
+        function changeChar(getChar){
+            let bg = document.querySelector('.bg');
+            var selectChar = getChar.value;
+            console.log(selectChar);
+            let text = getChar.options[getChar.selectedIndex].text;
+            let needed = document.querySelector(selectChar);
+            const lines = Array.from(document.getElementsByClassName('face'));
+            lines.forEach(line => {
+                line.classList.remove("active");
+            });
+            needed.classList.add("active");
+            // needed.classList.toggle(selectChar);
+            // var options = document.querySelector('.selectColor').options;
+            // for (let i =0; i < options.length; i++){
+            //     if (options[i].value==selectChar){
+            //         console.log(options[i].value);
+            //         let main_ = document.querySelector(selectChar);
+            //         if (main_.classList.contains("active")===false)
+            //         {
+            //             main_.classList.add("active");
+            //         }
+            //         else{
+            //             main_.classList.remove("active");
+            //         }
+            //         // document.querySelector(selectChar).classList.remove("active");
+            //     }
+                // if (options[i].value!=selectChar && document.querySelector(selectChar).classList.add("active")==true)
+                // {
+                //     document.querySelector(selectChar).classList.remove("active");
+                // }
+                // console.log(options[i].value);
+            // }
+            // console.log(options.length);
+
+            // bg.style.background = selectColor;
+            // let main_ = document.querySelector(selectChar);
+            // main_.classList.add('active');
+            // var sections = document.getElementById("#face");
+            // for (i = 0; i < sections.length; i++){
+            //     console.log(sections[i]);
+            //     if (sections[i]!=selectChar)
+            //     {
+            //         document.querySelector().classList.remove('active');
+            //     }
+            // }
+            // all_.classList.remove('active');
+            // bg.innerHTML = text;
+        }
+
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@600&display=swap');
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        body
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(#6f1ef2,#ef4921);
+            /* background: radial-gradient(#fafd48,#40d405); */
+            /* background: radial-gradient(#03001f,#09026e); */
+            /* background: radial-gradient(#00c3ff,#4ee9a0); */
+            overflow: hidden;
+        }
+        .box
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box .title
+        {
+            position: absolute;
+            font-family: 'Edu VIC WA NT Beginner', cursive;
+            top: 50px;
+            left: 20px;
+            font-size: 50px;
+            color: #2196f3;
+            font-weight: 600;
+            background: linear-gradient(#2318c0,#1d066d);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .face1, .face2, .face3, .face4, .face5{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            visibility: visible;
+        }
+        .face1.active, .face2.active, .face3.active, .face4.active, .face5.active
+        {
+            display: flex;
+        }
+        .face1 .eye
+        {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            display: block;
+            background: #fff;
+            margin: 0 20px;
+            z-index: 10;
+            border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0,0,0,0.2),
+                        inset 0 0 15px #864110,
+                        inset 0 0 35px #c05e18;
+        }
+        .face1 .eye::before
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 35px;
+            transform: translate(-50%,-50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            z-index: 20;
+            background: #000;
+            border: 10px solid #2196f3;
+            box-sizing: border-box;
+        }
+        .face1 .head
+        {
+            position: absolute;
+            height: 400px;
+            width: 650px;
+            margin-top: 100px;
+            border-radius: 40%;
+            background: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .face1 .head .mouth
+        {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            height: 100px;
+            top: 70%;
+            width: 100px;
+            border-radius: 50%;
+            background: #000;
+            overflow: hidden;
+        }
+        .face1 .head .mouth::after
+        {
+            content: '';
+            position: absolute;
+            height: 50px;
+            width: 50px;
+            background: white;
+        }
+
+        .face2 .eye 
+        {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            display: block;
+            background: #fff;
+            margin: 0 25px;
+            z-index: 10;
+            border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
+                        inset 0 0 15px #2318c0,
+                        inset 0 0 35px #101286;
+        }
+        .face2 .eye::before
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 35px;
+            transform: translate(-50%,-50%);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            z-index: 20;
+            background: #000;
+            border: 10px solid #ff0000;
+            box-sizing: border-box;
+        }
+
+        .face2 .head
+        {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 450px;
+            width: 700px;
+            margin-top: 150px;
+            border-radius: 45%;
+            background: rgba(123, 179, 64, 1);
+        }
+        .face2 .head img
+        {
+            position: absolute;
+            top: 160px;
+            width: 500px;
+            height: 330px;
+            padding: 0;
+        }
+        .face2 .head .ear
+        {
+            position: absolute;
+            
+        }
+        .face2 img
+        {
+            position: absolute;
+            width: 600px;
+            margin-top: 50px;
+        }
+
+        .face3 .eye
+        {
+            position: relative;
+            width: 120px;
+
+            height: 120px;
+            display: block;
+            background: transparent;
+            margin-top: 140px;
+            z-index: 30;
+            border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
+                        inset 0 0 15px #fffeff,
+                        inset 0 0 35px #a0a0a0;
+        }
+        .face3 img
+        {
+            position: absolute;
+        }
+        .face3 .patch
+        {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #3b002d;
+            border-radius: 50%;
+            z-index: 20;
+            margin-top: 140px;
+        }
+        .face3 .eye::before
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 35px;
+            transform: translate(-50%,-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            z-index: 20;
+            background: #000;
+            border: 20px solid #ffffff;
+            box-sizing: border-box;
+        }
+        .face4 .eye
+        {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            display: block;
+            background: transparent;
+            margin: 0 20px;
+            z-index: 30;
+            border-radius: 50%;
+            box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
+                        inset 0 0 15px #1a1a1a,
+                        inset 0 0 35px #131313;
+        }
+        .face4 .eye::before
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 35px;
+            transform: translate(-70%,-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            z-index: 20;
+            background: #000;
+            border: 10px solid #503e30;
+            box-sizing: border-box;
+        }
+        .face4 img
+        {
+            position: absolute;
+        }
+        .face4 .img1
+        {
+            width: 700px;
+            margin-top: 40px;
+        }
+        .face4 .img2
+        {
+            z-index: 30;
+            transform: translate(70px,50px);
+        }
+        .face4 .glasses
+        {
+            position: absolute;
+            width: 130px;
+            height: 100px;
+            z-index: 40;
+            transform: translate(-70px,0);
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.815);
+        }
+        .face4 .glasses:nth-child(3)
+        {
+            position: absolute;
+            transform: translate(70px,0);
+        }
+
+        section
+        {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+        }
+
+        section .bg
+        {
+            color: white;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .selectColor 
+        {
+            position: relative;
+            padding: 10px;
+            border: none;
+            border-right: 10px solid #fff;
+            outline: none;
+            width: 200px;
+            border-radius: 4px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            font-weight: 700;
+        }
+        section option
+        {
+            font-size: 15px;
+            font-weight: 600;
+            white-space: nowrap;
+            user-select: none;
+            color: black;
+        }
+        .face5 img
+        {
+            position: absolute;
+
+        }
+        .face5 .eye
+        {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            display: block;
+            background: transparent;
+            margin: 0 15px;
+            top: -50px;
+            left: 90px;
+            z-index: 30;
+            border-radius: 50%;
+            /* box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2),
+                        inset 0 0 15px #1a1a1a,
+                        inset 0 0 35px #131313; */
+        }
+        .face5 .eye::before
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 35px;
+            transform: translate(-70%,-50%);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            z-index: 20;
+            background: #000;
+            border: 10px solid #000000;
+            box-sizing: border-box;
+        }
+        .face .hpatch
+        {
+            position: relative;
+            z-index: 20;
+            transform: translate(-200%,-85%);
+            margin: 0 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #cdd2d6;
+        }
+    </style>
+</body>
+</html>
