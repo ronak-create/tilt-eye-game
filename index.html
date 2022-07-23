@@ -9,33 +9,51 @@
     <div class="box">
         <div class="title">Let's play Tilt Guy.</div>
         <div class="face face1 active">
-            <div class="eye"></div>
-            <div class="eye"></div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
             <div class="head">
                 <div class="mouth"></div>
             </div>
         </div>
         <div class="face face2">
-            <div class="eye"></div>
-            <div class="eye"></div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
             <img src="https://img.icons8.com/plasticine/800/000000/cute-monster.png"/>
         </div>
         <div class="face face3">
-                <div class="eye"></div>
+                <div class="eye">
+                    <div class="balls"></div>
+                </div>
                 <div class="patch"></div>
                 <img src="https://img.icons8.com/ios-filled/1000/380093/third-eye-symbol.png"/>
         </div>
         <div class="face face4">
-            <div class="eye"></div>
-            <div class="eye"></div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
             <div class="glasses"></div>
             <div class="glasses"></div>
             <img class="img1" src="https://img.icons8.com/dusk/900/000000/detective.png"/>
             <img class="img2" src="https://img.icons8.com/external-icongeek26-linear-colour-icongeek26/200/1A1A1A/external-cigar-colombia-icongeek26-linear-colour-icongeek26.png"/>
         </div>
         <div class="face face5">
-            <div class="eye"></div>
-            <div class="eye"></div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
+            <div class="eye">
+                <div class="balls"></div>
+            </div>
             <div class="hpatch"></div>
             <div class="hpatch"></div>
             <img src="https://img.icons8.com/fluency/700/FA5252/reading-unicorn.png"/>
@@ -72,10 +90,21 @@
             const x = Math.round(e.beta);
             const y = Math.round(e.gamma);
             const z = Math.round(e.alpha);
-            console.log(x,y,z);
-            const eye = document.querySelectorAll('.eye');
+            function check_a_point(x,y){
+                var dist_point = (0 - x) * (0 - x) + (0 - y) * (0 - y);
+                var r = 50;
+                r *= r;
+                if (dist_point < r){
+                    return true
+                }
+                return false
+            }
+            // console.log(x,y,z);
+            const eye = document.querySelectorAll('.balls');
             eye.forEach(function(eye){
-                eye.style.transform = `translateY(${x}px) translateX(${y}px)`;
+                if (check_a_point(x,y)){
+                    eye.style.transform = `translateY(${x}px) translateX(${y}px)`;
+                }
             });
 
         })
@@ -180,9 +209,12 @@
         .face1 .eye
         {
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             width: 130px;
             height: 130px;
-            display: block;
+            /* display: block; */
             background: #fff;
             margin: 0 20px;
             z-index: 10;
@@ -190,14 +222,14 @@
             box-shadow: 0 5px 45px rgba(0,0,0,0.2),
                         inset 0 0 15px #864110,
                         inset 0 0 35px #c05e18;
+            overflow: hidden;
         }
-        .face1 .eye::before
+        .face1 .eye .balls
         {
-            content: '';
             position: absolute;
-            top: 50%;
-            left: 35px;
-            transform: translate(-50%,-50%);
+            /* top: 50%; */
+            /* left: 35px; */
+            /* transform: translate(-50%,-50%); */
             width: 45px;
             height: 45px;
             border-radius: 50%;
